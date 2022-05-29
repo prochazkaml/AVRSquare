@@ -1,6 +1,11 @@
 # AVRSquare
 A primitive square-wave synthesizer and tune player for AVR microcontrollers. Written in AVR assembly (with avra-compatible syntax).
 
+## Capabilities
+
+- Play up to 8 notes at once (using 8 pins)
+- 131.072 kHz "sample" rate
+
 ## Supported devices
 
 - ATmega328P
