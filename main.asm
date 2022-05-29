@@ -59,15 +59,12 @@
 	; Sum register
 	.def SUM = r18
 
-	; Current position in the tune
-;	.def CURR_NUM_OF_ROWS = r26
-;	.def CURR_NUM_OF_ROWS_L = r26
-;	.def CURR_NUM_OF_ROWS_H = r27
-	
-	; Current wait value
+	; Current frequency prescaler value
 	.def CURR_WAIT_PRESCALER = r26
 	.def CURR_WAIT_PRESCALER_L = r26
 	.def CURR_WAIT_PRESCALER_H = r27
+
+	; Current wait value
 	.def CURR_WAIT = r24
 	.def CURR_WAIT_L = r24
 	.def CURR_WAIT_H = r25
@@ -215,29 +212,7 @@ int_routine:
 	cpi CURR_WAIT_H, 0
 	brne no_next
 	
-	; Looks like we want to go to the next row, 
-	; so increment the row number
-	
-;	adiw CURR_NUM_OF_ROWS, 1
-	
-	; Check if the song has finished
-	
-;	cpi CURR_NUM_OF_ROWS_L, LOW(TUNE_NUM_OF_ROWS)
-;	brne no_reset
-	
-;	cpi CURR_NUM_OF_ROWS_H, HIGH(TUNE_NUM_OF_ROWS)
-;	brne no_reset
-	
-;	; It has, so reset the pointer
-	
-;	ldi	ZL, LOW(2 * tune)		; Load the tune
-;	ldi	ZH, HIGH(2 * tune)		; address into Z
-	
-;	clr CURR_NUM_OF_ROWS_L		; Clear the tune counter
-;	clr CURR_NUM_OF_ROWS_H
-	
-;no_reset:
-	; Read the next row
+	; The wait timer hit 0, so read the next row
 	
 	call read_row
 
