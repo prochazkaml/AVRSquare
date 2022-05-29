@@ -282,23 +282,35 @@ parse:
 ; -------------------------------------------------------------------
 
 ; Tune format:
-;		.equ TUNE_NUM_OF_ROWS = num
-;		.equ TUNE_TIMER_PRESCALER = num
-;		.dw WAIT0, CH0, CH1, CH2, ..., CH7
-;		.dw WAIT1, CH0, CH1, CH2, ..., CH7
+;		.dw (BITMAP << 8) | WAIT, CH0, CH1, CH2, ..., CH7
+;		.dw (BITMAP << 8) | WAIT, CH0, CH1, CH2, ..., CH7
 ;			...
-;		.dw WAIT(NUM_OF_NOTES - 1), CH0, CH1, CH2, ..., CH7
+;		.dw (BITMAP << 8) | WAIT, CH0, CH1, CH2, ..., CH7
+;		.dw 0xFFFF ; Song terminator
+;		.equ TUNE_TIMER_PRESCALER = num
 ;
-; TODO: This info is no longer accurate!
-;
-; TUNE_NUM_OF_ROWS = 16 bit value, number of rows
 ; TUNE_TIMER_PRESCALER = 16 bit value, prescaler - see below
 ;
-; CHx = frequency, 1 unit = ~0.500288166 Hz
+; BITMAP = indicates which channels will be updated
+;          (bit 0 = channel 0, ..., bit 7 = channel 7)
+;          If a channel's bit is not set, its value is not present
+;          in the following list of frequency values.
+; WAIT = number of 1/65536 second ticks to wait
+;        (this number will be multiplied by the prescaler)
+;        If it is zero, then another word is fetched, which contains
+;        a full 16-bit wait value.
+; CHx = frequency for a given channel, 1 unit = ~0.500288166 Hz
 ;       (safe to assume that 1 unit = 0.5 Hz)
 ;       32768 maximum (= 16384 Hz)
 ;       0 = silence
-; WAITx = number of 1/65536 second ticks to wait
-;         (this number will be multiplied by the prescaler)
+;
+; Example:
+;		.dw (0x05 << 8) | 5, 200, 400
+;		-> Channel 0 will be set to 100 Hz and channel 2 to 200 Hz
+;		-> Delay 5 ticks
+;
+;		.dw (0x07 << 8) | 0, 300, 100, 400, 200
+;		-> Channel 0 will be set to 50 Hz, channel 1 to 200 Hz and channel 2 to 100 Hz
+;		-> Delay 300 ticks
 
 	.include "tune.asm"
