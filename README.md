@@ -15,6 +15,8 @@ These devices already have their respective include files in the [devices](https
 
 ## Prerequisites
 
+**For initial testing, you can safely skip this and jump straight to the Configuration section.** An example tune.asm file is already present in this repository (converted from [SWINGING.MON](https://github.com/prochazkaml/Polytone/blob/master/examples/SWINGING.MON)).
+
 First of all (if you don't want to code music directly in assembly), you need to create or load an existing compatible music file (.MON, .POL) using [Polytone](https://github.com/prochazkaml/Polytone), a square-wave tracker which is capable of exporting the tune into a CSV file containing raw frequencies.
 
 Besides the Polytone repository, which already contains some example files, you can find some more [here](https://github.com/MobyGamer/MONOTONE).
