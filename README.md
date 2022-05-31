@@ -4,7 +4,7 @@ A primitive square-wave synthesizer and tune player for AVR microcontrollers. Wr
 ## Capabilities
 
 - Play up to 8 notes at once (using 8 pins)
-- 131.072 kHz "sample" rate
+- ~65.536 kHz "sample" rate
 
 [Here's a demo of this program playing the intro tune from 8088 MPH.](https://youtu.be/OVE0jGiZFQk)
 

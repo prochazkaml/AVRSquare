@@ -23,8 +23,8 @@
 		out TCCR0A, TMP
 		sts TIMSK0, TMP
 		
-		ldi TMP, 243			; 16000000 / (243 + 1) = ~131148 Hz
-								; (close enough to 131072 Hz)
+		ldi TMP, 243			; 16000000 / (243 + 1) = ~65574 Hz
+								; (close enough to 65536 Hz)
 		out OCR0A, TMP
 		
 		ldi TMP, (1 << 0)		; Start the timer (without prescaler)
