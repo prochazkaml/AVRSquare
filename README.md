@@ -49,7 +49,7 @@ In case you wish to port this to other AVRs, please keep the following in mind:
 
 - Some AVRs have different procedures for setting up the first 8-bit timer (Timer0 in most cases). Please refer to their respective manuals for more information on how that is done.
 - The initialization routine must fit in the empty space before the timer interrupt vector (to save space). In case it does not (as some AVRs have different vector table layouts), move the initialization routine after the timer interrupt routine and perform a jump at the reset vector to it.
-- Port D is used by default, as it is the only usable full 8-bit port on the ATmega328P. Some AVRs lack this port, so it might have to be changed in (main.asm)[https://github.com/prochazkaml/AVRSquare/blob/master/main.asm] under the section `REGISTER DEFINITIONS`.
+- Port D is used by default, as it is the only usable full 8-bit port on the ATmega328P. Some AVRs lack this port, so it might have to be changed in [main.asm](https://github.com/prochazkaml/AVRSquare/blob/master/main.asm) under the section `REGISTER DEFINITIONS`.
 - You will need to get the include file for your microcontroller and implement it in [devicelist.asm](https://github.com/prochazkaml/AVRSquare/blob/master/devicelist.asm). You can find include files in the [avra repository](https://github.com/Ro5bert/avra/tree/master/includes).
 
 ## Build
