@@ -1,3 +1,7 @@
+# Moved over to [Codeberg](https://codeberg.org/prochazkaml/AVRSquare).
+
+---
+
 # AVRSquare
 A primitive square-wave synthesizer and tune player for AVR microcontrollers. Written in AVR assembly (with avra-compatible syntax).
 
